@@ -5,6 +5,9 @@ on:
     - cron: "59 * * * *"
   workflow_dispatch: # Allow manual trigger too
 
+permissions:
+  contents: write
+
 jobs:
   update-json:
     runs-on: ubuntu-latest
@@ -35,4 +38,4 @@ jobs:
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:master
           
       - name: Purge jsDelivr cache
-        run: curl -X GET "https://purge.jsdelivr.net/gh/kishandev2509/githubInfoJson@latest/projects_data.json"
+        run: curl -X GET "https://purge.jsdelivr.net/gh/kishandev2509/githubInfoJson@master/projects_data.json"

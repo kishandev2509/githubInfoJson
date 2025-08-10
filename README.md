@@ -65,7 +65,7 @@ This repository is licensed under the **MIT License**. You are free to use, modi
 
 ## 🙋‍♂️ Author
 
-**Kishan Dev (KD)**
+**Kishan Dev (KD)**\
 📧 [kishandevprajapati4@gmail.com](mailto:kishandevprajapati4@gmail.com)\
 🔗 [LinkedIn](https://linkedin.com/in/kishandev2509)\
 💻 [GitHub](https://github.com/kishandev2509)

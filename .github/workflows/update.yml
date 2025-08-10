@@ -1,12 +1,9 @@
-name: Update Portfolio JSON hourly
+name: Update Portfolio JSON every 10 mins
 
 on:
   schedule:
-    - cron: "30 * * * *"
-  workflow_dispatch: # Allow manual trigger too
-
-permissions:
-  contents: write
+    - cron: "*/10 * * * *" # every 10 minutes (UTC)
+  workflow_dispatch: # manual trigger
 
 jobs:
   update-json:
@@ -27,15 +24,21 @@ jobs:
       - name: Run JSON update script
         run: python update_portfolio.py
 
-      - name: Commit and push changes
+      - name: Commit and push changes if needed
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config user.name "GitHub Actions Bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add projects_data.json
-          git commit -m "🔄 Hourly portfolio update [skip ci]" || echo "No changes to commit"
-          git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:master
           
-      - name: Purge jsDelivr cache
-        run: curl -X GET "https://purge.jsdelivr.net/gh/kishandev2509/githubInfoJson@master/projects_data.json"
+          # Only commit if there are changes
+          if ! git diff --quiet; then
+            git add projects_data.json
+            git commit -m "🔄 Portfolio update [skip ci]"
+            git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:master
+
+            # Purge jsDelivr cache for this file
+            curl -X GET "https://purge.jsdelivr.net/gh/kishandev2509/githubInfoJson@latest/projects_data.json"
+          else
+            echo "No changes in JSON — skipping commit & purge."
+          fi

@@ -2,8 +2,8 @@ name: Update Portfolio JSON hourly
 
 on:
   schedule:
-    - cron: "59 * * * *"  
-  workflow_dispatch:     # Allow manual trigger too
+    - cron: "59 * * * *"
+  workflow_dispatch: # Allow manual trigger too
 
 jobs:
   update-json:
@@ -16,7 +16,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10.18'
+          python-version: "3.10.18"
 
       - name: Install dependencies
         run: pip install requests
@@ -31,5 +31,8 @@ jobs:
           git config user.name "GitHub Actions Bot"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add projects_data.json
-          git commit -m "🔄 Daily portfolio update [skip ci]" || echo "No changes to commit"
+          git commit -m "🔄 Hourly portfolio update [skip ci]" || echo "No changes to commit"
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:master
+          
+      - name: Purge jsDelivr cache
+        run: curl -X GET "https://purge.jsdelivr.net/gh/<user>/<repo>@main/data.json"

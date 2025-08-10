@@ -35,4 +35,4 @@ jobs:
           git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:master
           
       - name: Purge jsDelivr cache
-        run: curl -X GET "https://purge.jsdelivr.net/gh/<user>/<repo>@main/data.json"
+        run: curl -X GET "https://purge.jsdelivr.net/gh/kishandev2509/githubInfoJson@latest/projects_data.json"

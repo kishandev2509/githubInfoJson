@@ -2,7 +2,7 @@ name: Update Portfolio JSON hourly
 
 on:
   schedule:
-    - cron: "8 * * * *"  
+    - cron: "59 * * * *"  
   workflow_dispatch:     # Allow manual trigger too
 
 jobs:

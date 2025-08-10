@@ -34,7 +34,7 @@ jobs:
           # Only commit if there are changes
           if ! git diff --quiet; then
             git add projects_data.json
-            git commit -m "🔄 Portfolio update [skip ci]"
+            git commit -m "🔄 Portfolio data updated"
             git push https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} HEAD:master
 
             # Purge jsDelivr cache for this file

@@ -32,7 +32,7 @@ def get_projects(username: str):
             project["description"] = repo["description"]
             project["user"] = repo["owner"]["login"]
             project["created_at"] = convert_utc_to_ist(repo["created_at"])
-            project["updated_at"] = convert_utc_to_ist (repo["updated_at"])
+            project["updated_at"] = convert_utc_to_ist(repo["updated_at"])
             projects_data.append(project)
 
         with open("projects_data.json", "w", encoding="utf-8") as f:

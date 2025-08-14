@@ -24,7 +24,7 @@
         "description": "\ud83d\udcc2 Portfolio Helper Repository: A supporting backend for my portfolio site, storing project data in JSON and auto-updating it via GitHub Actions. Uses a Python script to fetch repo details from the GitHub API, ensuring my portfolio always displays fresh and accurate project information about my github repos.",
         "user": "kishandev2509",
         "created_at": "2025-08-10 08:08",
-        "updated_at": "2025-08-14 16:26"
+        "updated_at": "2025-08-14 16:46"
     },
     {
         "display_name": "Inventory Management System",
